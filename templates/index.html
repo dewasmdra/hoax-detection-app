@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detektor Berita Hoaks</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 40px;
+        color: #333;
+      }
+      .container {
+        max-width: 700px;
+        margin: auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #4a4a4a;
+        text-align: center;
+      }
+      textarea {
+        width: 95%;
+        height: 150px;
+        padding: 15px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        margin-top: 10px;
+      }
+      button {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        border: none;
+        background-color: #5c67f2;
+        color: white;
+        font-size: 18px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      button:hover {
+        background-color: #4a54e1;
+      }
+      .result {
+        margin-top: 30px;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+      }
+      .result-hoax {
+        background-color: #fde2e2;
+        border: 1px solid #f44336;
+      }
+      .result-faktual {
+        background-color: #e2fde2;
+        border: 1px solid #4caf50;
+      }
+      .result h2 {
+        margin-top: 0;
+      }
+      .probability {
+        font-size: 14px;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔍 Detektor Berita Hoaks</h1>
+      <form action="/" method="post">
+        <label for="berita">Masukkan teks berita yang ingin diperiksa:</label>
+        <textarea name="berita" id="berita" required>
+{{ teks_asli or '' }}</textarea
+        >
+        <button type="submit">Periksa Sekarang</button>
+      </form>
+
+      {% if hasil %}
+      <div
+        class="result {{ 'result-hoax' if 'Hoaks' in hasil else 'result-faktual' }}"
+      >
+        <h2>Hasil Prediksi: {{ hasil }}</h2>
+        <p class="probability">{{ probabilitas }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
